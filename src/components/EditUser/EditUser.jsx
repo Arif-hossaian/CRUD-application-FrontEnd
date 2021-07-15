@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FormGroup,
   FormControl,
@@ -10,8 +10,8 @@ import {
   Card,
   CardContent,
 } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
-import { addUsers } from "../../Api";
+import { useHistory, useParams } from "react-router-dom";
+import { getUsers, editUser } from "./../../Api/index";
 
 const initialValue = {
   name: "",
@@ -29,24 +29,33 @@ const useStyles = makeStyles({
   },
 });
 
-const AddUsers = () => {
+const EditUser = () => {
   const classes = useStyles();
-  const history = useHistory()
+  const { id } = useParams();
+  const history = useHistory();
   const [user, setUser] = useState(initialValue);
   const { name, email, username, phone } = user;
   const onValueChange = (e) => {
     console.log(e.target.value);
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-  const addUsersDetails = async () => {
-    await addUsers(user);
-    history.push("/all")
+  const loadUserInfo = async () => {
+    const response = await getUsers(id);
+    setUser(response.data);
+  };
+  useEffect(() => {
+    loadUserInfo();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const editUsersDetails = async () => {
+    await editUser(id, user);
+    history.push("/all");
   };
   return (
     <Card className={classes.container}>
       <CardContent>
         <FormGroup>
-          <Typography variant="h4">Add User</Typography>
+          <Typography variant="h4">Edit User</Typography>
           <FormControl required={true}>
             <InputLabel htmlFor="my-input">Name</InputLabel>
             <Input
@@ -88,10 +97,10 @@ const AddUsers = () => {
             <Button
               variant="contained"
               color="primary"
-              style={{marginTop: "25px"}}
-              onClick={() => addUsersDetails()}
+              style={{ marginTop: "25px" }}
+              onClick={() => editUsersDetails()}
             >
-              Add User
+              Edit User
             </Button>
           </FormControl>
         </FormGroup>
@@ -100,4 +109,4 @@ const AddUsers = () => {
   );
 };
 
-export default AddUsers;
+export default EditUser;
