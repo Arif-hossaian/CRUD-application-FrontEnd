@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const URL = "http://localhost:3002/users";
+const URL = "https://mern-crud-application.herokuapp.com/user";
 
 export const getUsers = async (id) => {
   id = id || "";
@@ -8,7 +8,7 @@ export const getUsers = async (id) => {
 };
 //Post request
 export const addUsers = async (user) => {
-  return await Axios.post(URL, user);
+  return await Axios.post(`${URL}/add`, user);
 };
 //Edit user
 export const editUser = async (id, user) => {

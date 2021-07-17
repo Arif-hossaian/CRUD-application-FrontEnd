@@ -66,8 +66,8 @@ const AllUsers = () => {
         </TableHead>
         <TableBody>
           {users.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>{user.id}</TableCell>
+            <TableRow key={user._id}>
+              <TableCell>{user._id}</TableCell>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.username}</TableCell>
               <TableCell>{user.email}</TableCell>
@@ -76,7 +76,7 @@ const AllUsers = () => {
                 <Button
                   color="primary"
                   component={Link}
-                  to={`/edit/${user.id}`}
+                  to={`/edit/${user._id}`}
                 >
                   <CreateIcon />
                 </Button>
@@ -84,7 +84,7 @@ const AllUsers = () => {
               <TableCell>
                 <Button
                   color="secondary"
-                  onClick={() => deleteUserData(user.id)}
+                  onClick={() => deleteUserData(user._id)}
                 >
                   <DeleteIcon />
                 </Button>

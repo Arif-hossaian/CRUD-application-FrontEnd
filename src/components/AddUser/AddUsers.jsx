@@ -35,7 +35,7 @@ const AddUsers = () => {
   const [user, setUser] = useState(initialValue);
   const { name, email, username, phone } = user;
   const onValueChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const addUsersDetails = async () => {
@@ -48,40 +48,36 @@ const AddUsers = () => {
         <FormGroup>
           <Typography variant="h4">Add User</Typography>
           <FormControl required={true}>
-            <InputLabel htmlFor="my-input">Name</InputLabel>
+            <InputLabel htmlFor="my-inputone">Name</InputLabel>
             <Input
               onChange={(e) => onValueChange(e)}
               name="name"
               required
               value={name}
-              id="my-input"
             />
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="my-input">Username</InputLabel>
+            <InputLabel htmlFor="my-inputtwo">Username</InputLabel>
             <Input
               onChange={(e) => onValueChange(e)}
               name="username"
               value={username}
-              id="my-input"
             />
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="my-input">Email</InputLabel>
+            <InputLabel htmlFor="my-inputthree">Email</InputLabel>
             <Input
               onChange={(e) => onValueChange(e)}
               name="email"
               value={email}
-              id="my-input"
             />
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="my-input">Phone</InputLabel>
+            <InputLabel htmlFor="my-inputfour">Phone</InputLabel>
             <Input
               onChange={(e) => onValueChange(e)}
               name="phone"
               value={phone}
-              id="my-input"
             />
           </FormControl>
           <FormControl>
